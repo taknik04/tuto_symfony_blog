@@ -16,3 +16,5 @@ html .body-visitor
 display: grid;
 grid-template-rows: auto 1fr auto; 
 }
+
+/* $primary: #03035d; */
