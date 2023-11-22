@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {# Encodage standards des caractères du web #}
+        <meta charset="UTF-8">
+
+        {# Le titre de la page #}
+        <title>Jean Dupont - Inscription</title>
+
+        <meta name="description" content="Inscrivez-vous">
+
+        {# Minim de responsive design à toujours mettre en place #}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="robots" content="index, follow">
+
+        {# Favicon #}
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
+        <link rel="manifest"  href="{{ asset('favicon/site.webmanifest') }}">
+        <link rel="mask-icon" href="{{ asset('favicon/safari-pinned-tab.svg" color="#5bbad5') }}">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        {# Font family #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+        
+
+         {# Bootstrap 5 stylesheet #}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        
+        {# {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %} #}
+
+        {# My stylesheet #}
+        {# <link rel="stylesheet" href="{{ asset('styles/app.css') }}"> #}
+
+    </head>
+    <body class="h-100">
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('assets/images/visitor/authentication/login.png') }}" class="img-fluid" alt="Connectez vous pour lire des articles sur la santé" >
+                </div>
+                <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                    <form method="POST" class="w-100">
+                        {% if error %}
+                            <div class="text-center alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success text-center" role="alert">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                        
+                        <div class="mb-3">
+                            <label for="authentication_form_email">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="authentication_form_email" class="form-control" autocomplete="email" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="authentication_form_password">Mot de passe</label>
+                            <input type="password" name="password" id="authentication_form_password" class="form-control" autocomplete="current-password" required>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-md-6 my-1">
+                                <label>
+                                    <input type="checkbox" name="_remember_me" checked>
+                                    Se souvenir de moi
+                                </label>
+                            </div>
+                            <div class="col-md-6 text-start text-md-end my-1">
+                                <a href="">Mot de passe oublié ?</a>
+                            </div>
+                        </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+                        <div class="mb-3">
+                            <input formnovalidate type="submit" class="btn btn-primary w-100 shadow" value="Je me connecte">
+                        </div>
+                    </form>
+
+                    <p class="my-1">Vous n'êtes pas encore inscrit ? <a href="{{path('visitor.registration.register')}}">Inscrivez-vous</a></p>
+                    <p class="my-1"><a href="{{path('visitor.welcome.index')}}">Retour à l'accueil</a></p>
+                </div>
+            </div>
+        </div>
+
+        {# Bootstrap 5 scripts #}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>
+
+
