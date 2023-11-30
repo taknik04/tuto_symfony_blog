@@ -187,3 +187,5 @@ class ResetPasswordController extends AbstractController
         return $this->redirectToRoute('visitor.authentication.check_email');
     }
 }
+
+
