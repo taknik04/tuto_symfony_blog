@@ -1,20 +1,16 @@
 * {
-    font-family: "Poppins", sans-serif;
-  }
-  
-  .navbar-brand {
-    font-family: "Pacifico", cursive;
-  }
-
-html .body-visitor
-{
-    height: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
-.body-visitor
-{
-display: grid;
-grid-template-rows: auto 1fr auto; 
+html, .body-visitor {
+  height: 100%;
 }
 
-/* $primary: #03035d; */
+.body-visitor {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+}
