@@ -18,7 +18,7 @@ security:
       provider: app_user_provider
       custom_authenticator: App\Security\LoginAuthenticator
       logout:
-        path: visitor.authentication.logout
+        path: app.logout
         # where to redirect after logout
         target: visitor.authentication.login
 
