@@ -1,0 +1,72 @@
+{% extends "themes/base_admin.html.twig" %}
+
+{% block title %}Modifier l'article:{{post.title}} {% endblock %}
+
+{% block description %}Modifier cet article{% endblock %}
+
+  {# The text editor #}
+    {% block tinyMCE %}
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+       selector: 'textarea#post_form_content'
+      });
+</script>
+    {% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Modifier cet article</h1>
+
+    <div class="container">
+       <div class="row ">
+           <div class="col-md-9 mx-auto">
+           {{form_start(form)}}
+                  <div class="mb-3">
+                       <label for="post_form_title">Titre</label>
+                       <div class="text-danger">{{form_errors(form.title)}}</div>
+                       {{form_widget(form.title, {"attr": {'class': 'form-control', 'autofocus':'autofocus'}})}} 
+                  </div>
+ 
+                  <div class="mb-3">
+                                  <label for="post_form_category">Catégorie</label>
+                                  <div class="text-danger">{{form_errors(form.category)}}</div>
+                          {{form_widget(form.category, {"attr": {'class': 'form-control'}})}}
+                                  </div>
+                  
+
+                    <div class="row mb-3">
+                           <div class="col-md-4">
+                          {#Apperçu de l'image actuelle#}
+                          {% if post.image %}
+                          <p class="text-center">Image actuelle</p>
+                            <img class="img-fluid" src="{{ vich_uploader_asset(post, 'imageFile')}}" alt="{{ post.title }}">
+                            {% else %}
+                            <p class="text-center">Aucune image existante</p>
+                           {% endif %}
+                        
+                           </div>
+
+                           <div class="col-md-4">
+                                  <label for="post_form_imageFile_file">Modifier l'image</label>
+                                  <div class="text-danger">{{form_errors(form.imageFile)}}</div>
+                                  {{form_widget(form.imageFile, {"attr": {'class': 'form-control mt-4 mb-3'}})}}
+                            </div>
+                            <div class="col-md-4">
+                               {#Apperçu de la nouvelle image à uploader#}
+                            </div>
+                           </div>
+
+                            <div class="mb-3">
+                             <label for="post_form_content">Contenu</label>
+                                  <div class="text-danger">{{form_errors(form.content)}}</div>
+                                  {{form_widget(form.content, {"attr": {'class': 'form-control'}})}}
+                           </div>
+                              <div>
+                                 <input formnovalidate type="submit" class="btn btn-primary"
+                              </div>
+           {{form_end(form)}}
+             
+           </div>
+       </div>
+    </div>
+    {% endblock %}
