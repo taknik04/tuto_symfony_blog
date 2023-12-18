@@ -4,6 +4,10 @@
 
 {% block description %}Modifier cet article{% endblock %}
 
+{% block jQuery %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
   {# The text editor #}
     {% block tinyMCE %}
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
@@ -37,6 +41,8 @@
                     <div class="row mb-3">
                            <div class="col-md-4">
                           {#Apperçu de l'image actuelle#}
+                          <div class="preview-image-title"></div>
+                            <div class="preview-image-content"></div>
                           {% if post.image %}
                           <p class="text-center">Image actuelle</p>
                             <img class="img-fluid" src="{{ vich_uploader_asset(post, 'imageFile')}}" alt="{{ post.title }}">
@@ -70,3 +76,29 @@
        </div>
     </div>
     {% endblock %}
+    {% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            
+            $("#post_form_imageFile_file").on('change', function(){
+                let file = $(this).get(0).files[0];
+
+                if (file) 
+                {
+                    let fileReader = new FileReader();
+
+                    fileReader.onload = function(){
+
+                        let p   = `<p>Aperçu de l'image</p>`;
+                        let img = `<img src="${fileReader.result}" class="img-fluid" alt="Prévisualisation de l'image de l'article."/>`;
+
+                        $('.preview-image-title').html(p);
+                        $('.preview-image-content').html(img);
+                    };
+
+                    fileReader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+{% endblock %}

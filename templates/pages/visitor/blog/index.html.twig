@@ -1,13 +1,13 @@
-{% extends 'themes/base_visitor.html.twig' %}
+{% extends "themes/base_visitor.html.twig" %}
 
 {% block title %}Page de blog{% endblock %}
 
-{% block description %} Lisez les articles de blog intéressants sur la santé et la médecine{% endblock %}
-{% block keywords %}Blog, Médecine, Santé, Jean Dupont, Articles{% endblock %}
+{% block description %}Lisez des articles interessants{% endblock %}
+
+{% block keywords %}Blog, Jean Dupont, Santé, Medecine, Articles{% endblock %}
 
 {% block main %}
-<main>
-   <h1 class="text center my-3">Page de blog</h1>
-</main>
- 
+    <main>
+        {% include 'components/header_visitor.html.twig' with {'h1':'Page de blog'} %}
+    </main>
 {% endblock %}
