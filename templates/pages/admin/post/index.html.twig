@@ -94,7 +94,8 @@
                  <td>
                             <a class="text-secondary mx-2" href="{{path('admin.post.edit', {'id': post.id})}}" title="Modifier {{post.title}}"><i class="fas fa-edit"></i></a>
 
-                            <a onclick="event.preventDefault(); return confirm('Attention!!! En supprimant cette catégorie, vous supprimez tous ses articles associés. Confirmez?') && document.querySelector('#delete__post_form_{{post.id}}').submit();" class="text-danger mx-2" href="#" title="Supprimer {{post.title}}"><i class="fa-solid fa-trash"></i></a>
+                            <a class="text-secondary mx-2" href="{{path('admin.post.edit', {'id': post.id})}}" title="Modifier {{post.title}}"><i class="fas fa-edit"></i></a>
+                            <a onclick="event.preventDefault(); return confirm('Confirmer la suppression?') && document.querySelector('#delete_post_form_{{post.id}}').submit();" class="text-danger mx-2" href="#" title="Supprimer {{post.title}}"><i class="fa-solid fa-trash"></i></a>
                             <form method="POST" action="{{path('admin.post.delete', {'id':post.id})}}" id="delete_post_form_{{post.id}}">
                                 <input type="hidden" name="csrf_token" value="{{csrf_token('delete_post_'~post.id)}}">
                                 <input type="hidden" name="_method" value="DELETE">

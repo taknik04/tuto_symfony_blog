@@ -1,13 +1,75 @@
-{% extends 'themes/base_visitor.html.twig' %}
+{% extends "themes/base_visitor.html.twig" %}
 
 {% block title %}Page de contact{% endblock %}
 
-{% block description %} Contactez moi si tous avez des questions ou des idées{% endblock %}
-{% block keywords %}Blog, Médecine, Santé, Jean Dupont, Contact{% endblock %}
+{% block description %}Contactez-moi si vous avez des question ou des idées{% endblock %}
+
+{% block keywords %}Blog, Jean Dupont, Santé, Medecine, Articles, Contact{% endblock %}
 
 {% block main %}
-<main>
-   <h1>Page de contact</h1>
-</main>
- 
+    <main>
+        {% include 'components/header_visitor.html.twig' with {'h1':'Page de contact'} %}
+
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-7">
+
+                    {% include 'components/alert.html.twig' with {'type':'success'} %}
+
+                    {{form_start(form)}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="contact_form_firstName">Prénom</label>
+                                    <div class="text-danger">{{form_errors(form.firstName)}}</div>
+                                    {{form_widget(form.firstName, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="contact_form_lastName">Nom</label>
+                                    <div class="text-danger">{{form_errors(form.lastName)}}</div>
+                                    {{form_widget(form.lastName, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="contact_form_email">Email</label>
+                                    <div class="text-danger">{{form_errors(form.email)}}</div>
+                                    {{form_widget(form.email, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="contact_form_phone">Numéro de téléphone</label>
+                                    <div class="text-danger">{{form_errors(form.phone)}}</div>
+                                    {{form_widget(form.phone, {'attr': {'class':'form-control'}})}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact_form_message">Message</label>
+                            <div class="text-danger">{{form_errors(form.message)}}</div>
+                            {{form_widget(form.message, {'attr': {'class':'form-control'}})}}
+                        </div>
+                        <div class="mb-3">
+                            <input formnovalidate type="submit" class="btn btn-primary">
+                        </div>
+                    {{form_end(form)}}
+                </div>
+                <div class="col-md-5">
+                    <p><strong>Email</strong>: {{setting.email}}</p>
+                    {% if setting.phone %}
+                        <p><strong>Email</strong>: {{setting.phone}}</p>
+                    {% endif %}
+                    <div>
+                        <iframe class="h-100 w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.4186276755154!2d2.7820387754912352!3d48.86929559994031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e61d184c1008ef%3A0x59a83b46f5df45fc!2sDisney%20Village!5e0!3m2!1sfr!2sfr!4v1700144120033!5m2!1sfr!2sfr"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}
