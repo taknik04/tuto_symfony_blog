@@ -27,8 +27,8 @@
 {% block main %}
     <h1 class="text-center my-3 display-5">Liste des catégories</h1>
 
-      {% include 'componemts/alert.html.twig' with {'type': 'success'} %}
-      {% include 'componemts/alert.html.twig' with {'type': 'warning'} %}
+      {% include 'components/alert.html.twig' with {'type': 'success'} %}
+      {% include 'components/alert.html.twig' with {'type': 'warning'} %}
 
     <div class="d-flex justify-content-end align-items-center my-3">
         <a href="{{path('admin.category.create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouvelle catégorie</a>

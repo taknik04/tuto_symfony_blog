@@ -27,7 +27,7 @@
 {% block main %}
     <h1 class="text-center my-3 display-5">Liste des articles</h1>
 
-      {% include 'componemts/alert.html.twig' with {'type': 'success'} %}
+      {% include 'components/alert.html.twig' with {'type': 'success'} %}
     {% for message in app.flashes('success') %}
     <div class="text-center alert alert-success alert-dismissible fade show" role="alert">
        {{message}}
