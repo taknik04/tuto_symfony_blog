@@ -18,6 +18,16 @@
 </script>
     {% endblock %}
 
+    {% block select2 %}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#post_form_tags').select2();
+        });
+    </script>
+{% endblock %}
+
 {% block main %}
     <h1 class="text-center my-3 display-5">Modifier cet article</h1>
 
@@ -36,6 +46,12 @@
                                   <div class="text-danger">{{form_errors(form.category)}}</div>
                           {{form_widget(form.category, {"attr": {'class': 'form-control'}})}}
                                   </div>
+
+                                  <div class="mb-3">
+                        <label for="post_form_tags">Tags</label>
+                        <div class="text-danger">{{form_errors(form.tags)}}</div>
+                        {{form_widget(form.tags, {'attr': {'class': 'form-control'}})}}
+                    </div>
                   
 
                     <div class="row mb-3">

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Tag;
 use App\Entity\Post;
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
@@ -26,6 +27,19 @@ class PostFormType extends AbstractType
             
                 // uses the Category.name property as the visible option string
                 'choice_label' => 'name',
+            ])
+            ->add('tags', EntityType::class, [
+                // looks for choices from this entity
+                'class' => Tag::class,
+
+                "placeholder" => "choisissez",
+            
+                // uses the Category.name property as the visible option string
+                'choice_label' => 'name',
+
+                // used to render a select box, check boxes or radios
+                'multiple' => true,
+                'expanded' => false,
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
