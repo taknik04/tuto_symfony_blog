@@ -1,0 +1,23 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Les paramètres du site{% endblock %}
+
+{% block description %}Les paramètres du site{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Les paramètres du site</h1>
+
+    {% include "components/alert.html.twig" with {'type':'success'} %}
+
+    <div class="container mt-5">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <p class="">Email: {{setting.email}}</p>
+                    <p class="">Phone: {{setting.phone ? setting.phone : 'Non renseigné'}}</p>
+                    <a href="{{path('admin.setting.edit', {'id': setting.id})}}" class="btn btn-secondary">Modifier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
