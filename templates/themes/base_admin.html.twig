@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %} - Admin - Le blog de Marie NANA</title>
+    <title>{% block title %}{% endblock %} - Admin - Le blog de Radek</title>
     <meta name="description" content="{% block description %}{% endblock %}">
 
     {# Favicon #}
@@ -21,22 +21,16 @@
     {# Font awesome #}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-    {# Font family #}
+    {# Google Font #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
-    {# A css part of webpack encore #}
-    {% block webpack_encore_stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
+    {# Bootstrap 5 StyleSheet #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    {# A js part of webpack encore #}
-    {% block webpack_encore_javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+    {# Link css #}
+    <link rel="stylesheet" href="/css/app.css" >
 
     {# jQuery #}
     {% block jQuery %}{% endblock %}
@@ -49,61 +43,12 @@
 
     {# Beautiful replacement for select boxes #}
     {% block select2 %}{% endblock %}
-        
-    <style>
-    
-        .bi {
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        }
-
-        /*
-        * Sidebar
-        */
-
-        @media (min-width: 768px) {
-            .sidebar .offcanvas-lg {
-                position: -webkit-sticky;
-                position: sticky;
-                top: 48px;
-            }
-        }
-
-        .sidebar .nav-link {
-        font-size: .875rem;
-        font-weight: 500;
-        }
-
-        .sidebar .nav-link.active {
-        color: #2470dc;
-        }
-
-        .sidebar-heading {
-        font-size: .75rem;
-        }
-
-        /*
-        * Navbar
-        */
-
-        .navbar-brand {
-        padding-top: .75rem;
-        padding-bottom: .75rem;
-        background-color: rgba(0, 0, 0, .25);
-        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-        }
-
-        .navbar .form-control {
-        padding: .75rem 1rem;
-        }
-    </style>
     
   </head>
   <body>
 
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="{{path('visitor.welcome.index')}}">JD</a>
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="{{path('visitor.welcome.index')}}">Japap d'Afrique</a>
       <ul class="navbar-nav flex-row d-md-none">
         <li class="nav-item text-nowrap">
           <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -113,7 +58,7 @@
       </ul>
     </header>
 
-    <div class="container-fluid">
+<div class="container-fluid">
         <div class="row">
 
             <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
@@ -141,22 +86,20 @@
                                   Articles
                               </a>
                           </li>
-
                           <li class="nav-item">
                               <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.tag.index')}}">
                                   <i class="fa-solid fa-hashtag"></i>
                                   Tags
                               </a>
                           </li>
-                          
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="">
+                              {# <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.contact.index')}}">
                                   <i class="fa-regular fa-address-book"></i>
                                   Contacts
-                              </a>
+                              </a> #}
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="">
+                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.user.index')}}">
                                   <i class="fa-solid fa-users"></i>
                                   Utilisateurs
                               </a>
@@ -172,15 +115,15 @@
                       <hr class="my-3">
 
                       <ul class="nav flex-column mb-auto">
-                          <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="">
+                          {# <li class="nav-item">
+                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.profile.index')}}">
                                   <i class="fa-solid fa-user"></i>
-                                  Mon profil
+                                  Mon profil #}
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="">
-                              <i class="fa-solid fa-gear"></i>                            
+                              {# <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.setting.index')}}">
+                              <i class="fa-solid fa-gear"></i>                             #}
                                   Paramètres
                               </a>
                           </li>
@@ -191,13 +134,13 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href=""
+                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('visitor.welcome.index')}}">
                                   <i class="fa-solid fa-rotate-left"></i>
                                   Retour au site
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="">
+                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('app.logout')}}">
                                   <i class="fa-solid fa-right-from-bracket"></i>
                                   Déconnexion
                               </a>
@@ -212,10 +155,8 @@
             </main>
         </div>
     </div>
-
+    {# Bootstrap 5 Javascript #}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script><script src="dashboard.js"></script>
     {% block javascripts %}{% endblock %}
   </body>
 </html>

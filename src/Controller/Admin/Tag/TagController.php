@@ -13,31 +13,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TagController extends AbstractController
 {
-    #[Route('/admin/tag/list', name: 'admin.tag.index', methods:['GET'] )]
+    #[Route('/admin/tag/list', name: 'admin.tag.index', methods:['GET'])]
     public function index(TagRepository $tagRepository): Response
     {
         $tags = $tagRepository->findAll();
 
-        
-
-        return $this->render('pages/admin/tag/index.html.twig',[
+        return $this->render('pages/admin/tag/index.html.twig', [
             'tags' => $tags
         ]);
     }
 
-    #[Route('/admin/tag/create', name: 'admin.tag.create', methods:['GET', 'POST'] )]
-    public function create(Request $request, EntityManagerInterface $em): Response
 
+    #[Route('/admin/tag/create', name: 'admin.tag.create', methods:['GET', 'POST'])]
+    public function create(Request $request, EntityManagerInterface $em): Response
     {
 
         $tag = new Tag();
 
-        $form = $this->createForm(TagFormType::class,$tag);
+        $form = $this->createForm(TagFormType::class, $tag);
 
         $form->handleRequest($request);
 
-         if ($form->isSubmitted() && $form->isValid())
-         {
+        if ( $form->isSubmitted() && $form->isValid() ) 
+        {
             $em->persist($tag);
 
             $em->flush();
@@ -45,22 +43,24 @@ class TagController extends AbstractController
             $this->addFlash('success', "Le tag a été ajouté avec succès.");
 
             return $this->redirectToRoute("admin.tag.index");
-         }
+        }
 
         return $this->render("pages/admin/tag/create.html.twig", [
             "form" => $form->createView()
         ]);
     }
 
-    #[Route('/admin/tag/{id}/edit', name: 'admin.tag.edit', methods:['GET', 'PUT'] )]
+
+    #[Route('/admin/tag/{id}/edit', name: 'admin.tag.edit', methods:['GET', 'PUT'])]
     public function edit(Tag $tag, Request $request, EntityManagerInterface $em): Response
     {
-        $form = $this->createForm(TagFormType::class, $tag,[
-            'method' =>"PUT"
+        $form = $this->createForm(TagFormType::class, $tag, [
+            'method' => "PUT"
         ]);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
+
+        if ( $form->isSubmitted() && $form->isValid() ) 
         {
             $em->persist($tag);
 
@@ -69,31 +69,28 @@ class TagController extends AbstractController
             $this->addFlash('success', 'Le tag a été modifié.');
 
             return $this->redirectToRoute('admin.tag.index');
-            
         }
 
         return $this->render("pages/admin/tag/edit.html.twig", [
             "form" => $form->createView()
         ]);
     }
- 
-    #[Route('/admin/tag/{id}/delete', name: 'admin.tag.delete', methods:['DELETE'] )]
+
+
+    #[Route('/admin/tag/{id}/delete', name: 'admin.tag.delete', methods:['DELETE'])]
     public function delete(Tag $tag, Request $request, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('delete_tag_'.$tag->getId(), $request->request->get('csrf_token')))
+        if ( $this->isCsrfTokenValid('delete_tag_'.$tag->getId(), $request->request->get('csrf_token') ) )
         {
             $em->remove($tag);
-        
-            $em->flush();
-            $this->addFlash('success', "Ce tag a été supprimée");
 
+            $em->flush();
+
+            $this->addFlash('success', "Ce tag a été supprimé.");
         }
 
         return $this->redirectToRoute('admin.tag.index');
-
-        
     }
 
 
 }
-

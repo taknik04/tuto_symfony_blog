@@ -71,6 +71,9 @@
             <ul class="navbar-nav ms-auto">
                 {% if app.user %}
                     <li class="nav-item">
+                        <a class="nav-link" href="{{path('admin.home.index')}}">Espace admin</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="">Espace privé</a>
                     </li>
                     <li class="nav-item">
