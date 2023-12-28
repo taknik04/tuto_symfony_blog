@@ -1,13 +1,91 @@
-{% extends 'themes/base_visitor.html.twig' %}
+{% extends "themes/base_visitor.html.twig" %}
 
 {% block title %}Page d'accueil{% endblock %}
 
-{% block description %} Lisez les articles pertinents et intéressants sur l'actualité des stars africains{% endblock %}
-{% block keywords %}Blog, Actualité, People, Marie Nana, Afrique, Stars{% endblock %}
+{% block description %}Hello! C'est Marie NANA {% endblock %}
+
+{% block keywords %}Blog, Marie NANA, Santé, Medecine{% endblock %}
 
 {% block main %}
-<main>
-   <h1 class="text-center display-5 ">Page d'accueil</h1>
-</main>
- 
+    <main>
+
+        {# Hero section #}
+        <header>
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-5 my-3 order-md-2">
+                        <img src="{{asset('images/visitor/welcome/hero/hero.png')}}" class="img-fluid" alt="Image d'accueil de Marie NANA" >
+                    </div>
+                    <div class="col-md-7 my-3 order-md-1 d-flex flex-column justify-content-evenly align-items-center">
+                        <div>
+                            <h1>Bienvenue sur mon blog</h1>
+                        </div>
+                        <div>
+                            <p>Je m'appelle Marie NANA.</p>
+                            <p>Toute l'information africaine dans le sport, la culture se trouve ici.</p>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-primary btn-lg shadow">Lire les articles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        {# About me section #}
+        <section id="about-me" class="bg-light py-3">
+            <h2 class="text-center my-3 display-5">Qui suis-je?</h2>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{asset('images/visitor/welcome/about_me/about_me.png')}}" >
+                    </div>
+                    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati impedit nesciunt rerum ab consequuntur laborum dignissimos quidem delectus! Nihil quasi ab enim voluptates quae, laboriosam blanditiis sequi saepe, debitis consectetur a inventore. Odit id quidem nihil dicta eius veritatis.
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, facilis. Quod totam accusantium minima suscipit voluptas, doloremque et illo quisquam beatae quae eos at, similique exercitationem! Fuga nostrum et excepturi? Fugiat perferendis                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, facilis. Quod totam accusantium minima suscipit voluptas, doloremque et illo quisquam beatae quae eos at, similique exercitationem! Fuga nostrum et excepturi? Fugiat perferendis
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        {# 3 lasts posts #}
+        {% if posts|length != 0 %}
+        <section id="last-posts" class="my-3 py-3">
+                <h2 data-aos="fade-down" class="text-center my-3 display-5">Mes 3 derniers articles</h2>
+
+                <div class="container mt-5">
+                    <div class="card-group">
+                        {% for post in posts %}
+                            <div class="card mx-3 border shadow">
+                                <div class="card-body">
+                                    <h3 class="card-title">{{post.title}}</h3>
+                                    <p class="card-text">{{post.content|striptags|u.truncate(70, '...')|raw}}</p>
+                                    <p><a href="#" class="btn btn-sm btn-primary">Lire cet article</a></p>
+                                    <p class="card-text"><small class="text-body-secondary">Publié {{post.publishedAt|ago}}</small></p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        <section class="my-3 py-5 bg-light text-center">
+            <a 
+                href="{{path('visitor.contact.create')}}" 
+                class="btn btn-lg btn-primary"
+            >
+                    Contactez-moi
+            </a>
+        </section>
+    </main>
 {% endblock %}
