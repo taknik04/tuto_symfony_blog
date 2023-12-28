@@ -14,3 +14,13 @@ html, .body-visitor {
 .navbar-brand {
   font-family: 'Pacifico', cursive;
 }
+
+.jd-active {
+  color:#ff00a2;
+}
+
+.jd-visitor-header
+ {
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+

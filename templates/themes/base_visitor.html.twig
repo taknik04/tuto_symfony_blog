@@ -1,36 +1,33 @@
+{% set pathInfo = app.request.pathInfo %}
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+    <head>
+        {# Encodage standards des caractères du web #}
+        <meta charset="UTF-8">
 
-    {# Encodage des caractères pour le web #}
-    <meta charset="UTF-8">
+        {# Minim de responsive design à toujours mettre en place #}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {# Minimum de responsive design à toujours mettre en place #}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {# Le titre de la page #}
+        <title>{% block title %}{% endblock %} - Le blog de Jean Dupont</title>
 
-    {# Le titre de la page #}
-    <title>{% block title %}{% endblock %} - Venus</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
 
-                                    {# SEO #}
-    {# description de la page #}
-    <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="keywords" content="{% block keywords %}{% endblock %}">
 
-    {# Mots clés #}
-    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+        <meta name="robots" content="index, follow">
 
-    <meta name="robots" content="index, follow">
+        {# Favicon #}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
 
-    {# Favicon #}
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-
-    {# Font awesome #}
-    {% block fontAwesome %}{% endblock %}
+        {# Font awesome #}
+        {% block fontAwesome %}{% endblock %}
 
     {# Google font #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,51 +44,73 @@
 <body class="body-visitor">
     
     {# Navbar #}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{{path('visitor.welcome.index')}}">JD</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{path('visitor.welcome.index')}}">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Qui suis-je</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('visitor.blog.index')}}">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('visitor.contact.create')}}">Contact</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                {% if app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{path('admin.home.index')}}">Espace admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Espace privé</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{path('app.logout')}}">Déconnexion</a>
-                    </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('visitor.authentication.login')}}">Connexion</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('visitor.registration.register')}}">Inscription</a>
-                </li>
-                {% endif %}
-                
-            </ul>
-          </div>
-        </div>
-    </nav>
+    <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{path('visitor.welcome.index')}}">JD</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a 
+                                class="nav-link {{ pathInfo == path('visitor.welcome.index') ? 'jd-active' : '' }}" 
+                                {{ pathInfo == path('visitor.welcome.index') ? 'aria-current="page"' : '' }}
+                                href="{{path('visitor.welcome.index')}}"
+                            >
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('visitor.welcome.index')}}#about-me">Qui suis-je?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                href="{{path('visitor.blog.index')}}"
+                                class="nav-link {{ pathInfo == path('visitor.blog.index') ? 'jd-active' : '' }}" 
+                                {{ pathInfo == path('visitor.blog.index') ? 'aria-current="page"' : '' }}
+                            >
+                                Blog
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                href="{{path('visitor.contact.create')}}"
+                                class="nav-link {{ pathInfo == path('visitor.contact.create') ? 'jd-active' : '' }}" 
+                                {{ pathInfo == path('visitor.contact.create') ? 'aria-current="page"' : '' }}
+                            >
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{path('admin.home.index')}}">Espace admin</a>
+                                </li>
+                            {% endif %}
+                            {% if is_granted('ROLE_USER') %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Espace privé</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{path('app.logout')}}">Déconnexion</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="my-2 mx-sm-2 btn btn-outline-primary shadow" href="{{path('visitor.authentication.login')}}">Connexion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="my-2 mx-sm-2 btn btn-primary shadow" href="{{path('visitor.registration.register')}}">Inscription</a>
+                            </li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
     {# Le contenu correspondant à chaque page #}
     <main>
