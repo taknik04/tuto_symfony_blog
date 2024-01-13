@@ -10,7 +10,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-#[UniqueEntity('name', message:"Cette catégorie existe déjà.")]
+
+
+#[UniqueEntity('name', message: "Cette catégorie existe déjà.")]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
 {
@@ -18,11 +20,12 @@ class Category
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    
-    #[Assert\NotBlank(message: "Le nom est obligatoire")]
+
+
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
     #[Assert\Length(
         max: 255,
-        maxMessage: 'Le nom de doit pas dépasser {{ limit }} caractères',
+        maxMessage: "Le nom ne doit pas dépasser {{ limit }} caractères.",
     )]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
@@ -32,9 +35,11 @@ class Category
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
+
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
+
 
     #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column(nullable: true)]
@@ -47,6 +52,7 @@ class Category
     {
         $this->posts = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {

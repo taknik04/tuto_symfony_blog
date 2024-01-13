@@ -1,0 +1,115 @@
+{% set pathInfo = app.request.pathInfo %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {# Encodage standards des caractères du web #}
+        <meta charset="UTF-8">
+
+        {# Minim de responsive design à toujours mettre en place #}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {# Le titre de la page #}
+        <title>Marie NANA{% block title %}{% endblock %}</title>
+
+        <meta name="description" content="{% block description %}{% endblock %}">
+        
+        {# Favicon #}
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
+        <link rel="manifest"  href="{{ asset('site.webmanifest') }}">
+        <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg" color="#5bbad5') }}">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        {# Font awesome #}
+        {% block fontAwesome %}{% endblock %}
+
+        {# No SEO for user area #}
+        <meta name="robots" content="noindex, nofollow">
+
+        {# Font family #}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+
+        {# A css part of webpack encore #}
+        {% block webpack_encore_stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {# A js part of webpack encore #}
+        {% block webpack_encore_javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+        {# My stylesheet #}
+        {# <link rel="stylesheet" href="{{ asset('styles.app.css') }}"> #}
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body class="body-user">
+
+        {# Navbar #}
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{path('visitor.welcome.index')}}">JD</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a 
+                                class="nav-link {{pathInfo == path('user.home.index') ? 'active' : '' }}" 
+                                {{pathInfo == path('user.home.index') ? 'aria-current="page"' : '' }} 
+                                href="{{path('user.home.index')}}">
+                                Espace
+                            </a>
+                        </li>
+                        <li>
+                            <a 
+                                class="nav-link {{pathInfo == path('user.profile.index') ? 'active' : '' }}" 
+                                {{pathInfo == path('user.profile.index') ? 'aria-current="page"' : '' }} 
+                                href="{{path('user.profile.index')}}">
+                                Mon profil
+                            </a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('admin.home.index')}}">Espace admin</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('visitor.welcome.index')}}">Retour au site</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('app.logout')}}">Déconnexion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        {# The specific content for each page #}
+        <main class="container-fluid my-3">
+            {% block main %}{% endblock %}
+        </main>
+
+        {# Footer #}
+        <footer class="bg-dark text-white text-center py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Espace utilisateur</span>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Le blog de Marie NANA</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>

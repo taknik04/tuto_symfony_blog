@@ -42,6 +42,8 @@
 
         {# My stylesheet #}
         {# <link rel="stylesheet" href="{{ asset('styles/app.css') }}"> #}
+         {# link css #}
+    <link rel="stylesheet" href="/css/app.css">
 
     </head>
     <body class="h-100">
@@ -49,7 +51,7 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-6 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('images/visitor/authentication/login.png') }}" class="img-fluid" alt="Connectez vous pour lire des articles sur la santé" >
+                    <img src="{{ asset('images/visitor/authentication/logo japap.png') }}" class="img-fluid" alt="logo japap" >
                 </div>
                 <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                     <form method="POST" class="w-100">
@@ -84,7 +86,7 @@
                         </div>
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
                         <div class="mb-3">
-                            <input formnovalidate type="submit" class="btn btn-primary w-100 shadow" value="Je me connecte">
+                            <input formnovalidate type="submit" class="btn btn-rose w-100 shadow" value="Je me connecte">
                         </div>
                     </form>
 
@@ -92,10 +94,10 @@
                     <p class="my-1"><a href="{{path('visitor.welcome.index')}}">Retour à l'accueil</a></p>
                 </div>
             </div>
+
+
         </div>
 
-        {# Bootstrap 5 scripts #}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
 </html>
 
