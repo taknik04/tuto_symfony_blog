@@ -5,7 +5,7 @@
 {% block description %}Mon profil{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Mon profil</h1>
+    <h1 class="text-center my-3 display-5 texte-rose">Mon profil</h1>
 
     {% include 'components/alert.html.twig' with {'type': "success"} %}
 
@@ -16,7 +16,7 @@
                 <p class="card-text">Prénom: {{app.user.firstName}}</p>
                 <p class="card-text">Nom: {{app.user.lastName}}</p>
                 <p class="card-text">Email: {{app.user.email}}</p>
-                <a href="{{path('admin.profile.edit')}}" class="btn btn-primary m-2">Modifier le profil</a>
+                <a href="{{path('admin.profile.edit')}}" class="btn btn-rose white m-2">Modifier le profil</a>
                 <a href="{{path('admin.profile.edit.password')}}" class="btn btn-dark m-2">Modifier le mot de passe</a>
               </div>
             </div>

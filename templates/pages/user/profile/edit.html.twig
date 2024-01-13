@@ -1,0 +1,38 @@
+{% extends "themes/base_user.html.twig" %}
+
+{% block title %} - Espace utilisateur - Modification de mon profil{% endblock %}
+
+{% block description %} - Espace utilisateur - Modification de mon profil{% endblock %}
+
+{% block main %}
+    
+    <h1 class="text-center my-3 display-5">Modification de mon profil</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto shadow p-4">
+                {{form_start(form)}}
+                    <div class="mb-3">
+                        <label for="">Prénom</label>
+                        <div class="text-danger">{{form_errors(form.firstName)}}</div>
+                        {{form_widget(form.firstName, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Nom</label>
+                        <div class="text-danger">{{form_errors(form.lastName)}}</div>
+                        {{form_widget(form.lastName, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Email</label>
+                        <div class="text-danger">{{form_errors(form.email)}}</div>
+                        {{form_widget(form.email, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-primary" value="Modifier">
+                    </div>
+                {{form_end(form)}}
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

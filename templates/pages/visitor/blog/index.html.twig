@@ -4,10 +4,75 @@
 
 {% block description %}Lisez des articles intéressants{% endblock %}
 
-{% block keywords %}Blog, Jean Dupont, Santé, Medecine, Articles{% endblock %}
+{% block keywords %}Blog, Marie NANA, Sport, Afrique, Actualité{% endblock %}
 
 {% block main %}
     <main>
-        {% include 'components/header_visitor.html.twig' with {'h1':'Page de blog'} %}
+        {% include 'components/header_visitor.html.twig' with {'h1':'Liste des articles'} %}
+
+        <div class="container my-5">
+            <div class="row text-center">
+                <div class="col-md-6 my-2">
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Les catégories
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            {% if categories|length == 0 %}
+                                <li><a class="dropdown-item" href="#">Aucune categorie existante</a></li>
+                            {% else %}
+                                {# {% for category in categories %}
+                                    <li><a class="dropdown-item" href="{{path('visitor.blog.posts.filter_by_category', {'id':category.id, 'slug': category.slug})}}">{{category.name}} ({{category.getPublishedPostsArray|length}})</a></li>
+                                {% endfor %} #}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 my-2">
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Les tags
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            {% if tags|length == 0 %}
+                                <li><a class="dropdown-item" href="#">Aucun tag existant</a></li>
+                            {% else %}
+                                {% for tag in tags %}
+                                    <li><a class="dropdown-item" href="{{path('visitor.blog.posts.filter_by_tag', {'id':tag.id, 'slug': tag.slug})}}">{{tag.name}} ({{tag.getPublishedPostsArray|length}})</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container my-5">
+                <div class="col-md-12 col-lg-8 mx-auto">
+                    {% for post in posts|reverse %}
+                    <div class="card my-5 shadow">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                {% if post.image %}
+                                    <img class="h-100 w-100 rounded-start" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.title }}">
+                                {% else %}
+                                    <img class="h-100 w-100 rounded-start" src="{{asset('images/visitor/blog/default_post_image.jpg')}}" alt="{{ post.title }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <p class="card-title fs-4">{{post.title}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">Publié {{post.publishedAt|ago}}</small></p>
+                                    <p class="card-text">{{post.content|striptags|u.truncate(70, '...')|raw}}</p>
+                                    <p><a href="{{path('visitor.blog.post.show', {'id': post.id, 'slug': post.slug})}}" class="btn btn-sm btn-primary">Lire cet article</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </main>
 {% endblock %}

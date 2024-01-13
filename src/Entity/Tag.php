@@ -11,8 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 
-
-#[UniqueEntity('name', message:"Ce tag existe déjà.")]
+#[UniqueEntity('name', message: "Ce tag existe déjà.")]
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
 {
@@ -21,10 +20,11 @@ class Tag
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank(message: "Le nom est obligatoire")]
+
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
     #[Assert\Length(
         max: 255,
-        maxMessage: 'Le nom de doit pas dépasser {{ limit }} caractères',
+        maxMessage: "Le nom ne doit pas dépasser {{ limit }} caractères.",
     )]
     #[Assert\Regex(
         pattern: "/^[0-9a-zA-Z-_áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+$/i",
@@ -34,13 +34,16 @@ class Tag
     #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
+
     #[Gedmo\Slug(fields: ['name'])]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
+
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
+
 
     #[Gedmo\Timestampable(on: 'update')]
     #[ORM\Column(nullable: true)]
@@ -54,6 +57,9 @@ class Tag
         $this->posts = new ArrayCollection();
     }
 
+
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -113,6 +119,25 @@ class Tag
     public function getPosts(): Collection
     {
         return $this->posts;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getPublishedPostsArray(): array
+    {
+        $publishedPosts = [];
+
+        foreach ($this->posts->toArray() as $post) 
+        {
+            if ( $post->isIsPublished() ) 
+            {
+                $publishedPosts[] = $post;
+            }
+        }
+
+        return $publishedPosts;
     }
 
     public function addPost(Post $post): static

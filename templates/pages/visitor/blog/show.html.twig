@@ -1,0 +1,123 @@
+{% extends "themes/base_visitor.html.twig" %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block description %}{{post.title}}{% endblock %}
+
+{% block keywords %}Blog, Jean Dupont, Santé, Medecine, Articles{% endblock %}
+
+{# Font awesome #}
+{% block fontAwesome %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
+{% block main %}
+    <main>
+
+        <div class="container my-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{path('visitor.blog.index')}}">Liste des articles</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{post.title|striptags|u.truncate(30, '...')|raw}}</li>
+
+                </ol>
+            </nav>
+
+            <div class="text-center">
+                {% if post.image %}
+                    <img class="img-fluid" src="{{ vich_uploader_asset(post, 'imageFile') }}" alt="{{ post.title }}">
+                {% endif %}
+            </div>
+
+            <div class="text-center">
+                <h1 class="my-3 display-5">{{post.title}}</h1>
+                <small>Publié {{post.publishedAt|ago}} par Jean Dupont</small>
+            </div>
+
+            <article class="container-jd my-5">
+                {{post.content|raw}}
+
+                <a id="like-link" href="{{path('visitor.blog.post.like', {'id':post.id, 'slug':post.slug})}}">
+                    {% if app.user and post.isLikedBy(app.user) %}
+                        <i class="fa-solid fa-thumbs-up"></i> {# Pouce liké #}
+                    {% else %}
+                        <i class="fa-regular fa-thumbs-up"></i> {# Pouce non liké #}
+                    {% endif %}
+                    
+                    <span id="total-likes-container">{{post.postLikes|length}}</span>
+                    <span>J'aime</span>
+                </a>
+            </article>
+
+            {% if app.user %}
+                <div class="my-5 container-jd">
+                    {{form_start(form, {'action': path('visitor.blog.post.show', {'id': post.id, 'slug':post.slug})~"#comment_form_content" })}}
+                        <div class="mb-3">
+                            <label for="comment_form_content">Laissez un commentaire</label>
+                            <div class="text-danger">{{form_errors(form.content)}}</div>
+                            {{form_widget(form.content, {'attr': {'class': 'form-control'}})}}
+                        </div>
+                        <div>
+                            <input formnovalidate type="submit" class="btn btn-primary" value="Commenter">
+                        </div>
+                    {{form_end(form)}}
+                </div>
+            {% else %}
+                <p class="text-center">
+                    Pour laisser un commentaire, 
+                    veuillez vous 
+                    <a href="{{path('visitor.authentication.login')}}" class="btn btn-sm btn-outline-primary">connecter</a> 
+                     /  
+                    <a href="{{path('visitor.registration.register')}}" class="btn btn-sm btn-primary">Inscrire</a>
+                </p>
+            {% endif %}
+
+
+            <div class="container">
+                {% for comment in post.comments|reverse %}
+                    {% if comment.isActivated %}
+                        <div class="bg-white shadow p-3 my-3">
+                            <p>{{comment.user.firstName}} {{comment.user.lastName}}</p>
+                            <p>{{comment.content}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            $('#like-link').on('click', function(event){
+                event.preventDefault();
+
+                $.ajax({
+                    url: this.href,
+                    type: 'GET',
+                    success: function(response){
+                        $('#total-likes-container').html(response.totalLikes);
+
+                        if ($('i').hasClass('fa-regular')) {
+                            $('i').removeClass('fa-regular');
+                            $('i').addClass('fa-solid');
+                        } else {
+                            $('i').removeClass('fa-solid');
+                            $('i').addClass('fa-regular');
+                        }
+                    },
+                    error: function(response){
+                        if (response.status == 403) {
+                            alert(response.responseJSON.message);
+                        } else {
+                            alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

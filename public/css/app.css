@@ -21,6 +21,38 @@ html, .body-visitor {
 
 .jd-visitor-header
  {
-  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
+.container-jd
+{
+
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width:500px)
+
+  {
+     width: 100%;
+     margin-left: auto;
+     margin-right: auto;
+    
+  }
+
+}
+
+.btn-rose
+{
+  background: #ff00a2;
+}
+
+.texte-rose
+{
+  color: #ff00a2;
+}
+
+.white
+{
+  color: #ffffff;
+}

@@ -1,0 +1,41 @@
+{% extends "themes/base_user.html.twig" %}
+
+{% block title %} - Espace utilisateur - Mon profil{% endblock %}
+
+{% block description %} - Espace utilisateur - Mon profil{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Mon profil</h1>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+
+                {% include 'components/alert.html.twig' with {'type':'success'} %}
+
+                <div class="card">
+                    <div class="card-header">
+                        Profil
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Prénom</strong> : {{app.user.firstName}}</p>
+                        <p class="card-text"><strong>Nom</strong> : {{app.user.lastName}}</p>
+                        <p class="card-text"><strong>Email</strong> : {{app.user.email}}</p>
+                        <p><a href="{{path('user.profile.edit')}}" class="mb-1 btn btn-primary d-block">Modifier le profil</a></p>
+                        <p><a href="{{path('user.profile.edit_password')}}" class="mb-1 btn btn-secondary d-block">Modifier le mot de passe</a></p>
+                        {% if "ROLE_SUPER_ADMIN" not in app.user.roles %}
+                            <p>
+                                <a onclick="event.preventDefault(); confirm('Attention!!! Voulez-vous vraiment supprimer votre compte ?') && document.querySelector('#delete-profile-form').submit();" href="#" class="mb-1 btn btn-danger d-block">Supprimer votre compte</a>
+                                <form id="delete-profile-form" method="POST" action="{{path('user.profile.delete')}}">
+                                    <input type="hidden" name="_method" value="DELETE" >
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token('profile-delete')}}">
+                                </form>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

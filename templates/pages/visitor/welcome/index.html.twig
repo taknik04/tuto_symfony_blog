@@ -4,7 +4,7 @@
 
 {% block description %}Hello! C'est Marie NANA {% endblock %}
 
-{% block keywords %}Blog, Marie NANA, Santé, Medecine{% endblock %}
+{% block keywords %}Blog, Marie NANA, Actualité, Afrique, sport{% endblock %}
 
 {% block main %}
     <main>
@@ -14,42 +14,48 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-5 my-3 order-md-2">
-                        <img src="{{asset('images/visitor/welcome/hero/hero.png')}}" class="img-fluid" alt="Image d'accueil de Marie NANA" >
+                        <img src="{{asset('images/visitor/welcome/hero/nganou.jpg')}}" class="img-fluid" alt="Image d'accueil de Marie NANA" >
                     </div>
+                   
                     <div class="col-md-7 my-3 order-md-1 d-flex flex-column justify-content-evenly align-items-center">
                         <div>
-                            <h1>Bienvenue sur mon blog</h1>
+                            <h1 class="texte-rose">Bienvenue sur Japap d'Afrique</h1>
                         </div>
+                         <div class="col-md-5 my-3 order-md-2">
+                                  <img src="{{asset('images/visitor/welcome/hero/logo japap.png')}}" class="img-fluid" alt="Logo Japap d'Afrique" >
+                                </div>
+                              
                         <div>
                             <p>Je m'appelle Marie NANA.</p>
-                            <p>Toute l'information africaine dans le sport, la culture se trouve ici.</p>
+                            <p>Ici, vous retrouverez toute l'information africaine dans le domaine sportif et culturel.</p>
                         </div>
                         <div>
-                            <a href="#" class="btn btn-primary btn-lg shadow">Lire les articles</a>
+                            <a href="#" class="btn btn-rose white">Lire les articles</a>
                         </div>
                     </div>
                 </div>
             </div>
+                    
+
         </header>
 
 
         {# About me section #}
         <section id="about-me" class="bg-light py-3">
-            <h2 class="text-center my-3 display-5">Qui suis-je?</h2>
+            <h2 class="text-center my-3 display-5 texte-rose">Qui suis-je?</h2>
 
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="{{asset('images/visitor/welcome/about_me/about_me.png')}}" >
+                        <img src="{{asset('images/visitor/welcome/about_me/moi.jpeg')}}" >
                     </div>
                     <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati impedit nesciunt rerum ab consequuntur laborum dignissimos quidem delectus! Nihil quasi ab enim voluptates quae, laboriosam blanditiis sequi saepe, debitis consectetur a inventore. Odit id quidem nihil dicta eius veritatis.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, facilis. Quod totam accusantium minima suscipit voluptas, doloremque et illo quisquam beatae quae eos at, similique exercitationem! Fuga nostrum et excepturi? Fugiat perferendis                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, facilis. Quod totam accusantium minima suscipit voluptas, doloremque et illo quisquam beatae quae eos at, similique exercitationem! Fuga nostrum et excepturi? Fugiat perferendis
+                           Je suis NANA Marie, passionnée de la culture et des médias. J'ai toujours rêvé d'avoir une plateforme me permettant de relayer des informations sur la culture africaine dans tous les domaines, tels que le sport, la cuisine, et partager la vie de nos stars africaines présentes sur les réseaux sociaux. 
+                           
+                           Le mot "Japap" signifie également 'kongossa' dans un langage très familier en Afrique, ou encore les potins des stars. Tout cela pour dire que je vais parler des autres, d'où son logo.
+
+Lorsque j'ajoute le mot "Afrique" par la suite, cela signifie que je vais relayer la vie des stars d'Afrique sur mon blog. Certains blogueurs parviennent à vivre de leur passion, et je me suis dit, pourquoi pas moi? J'aimerais faire de cela un métier. C'est la raison pour laquelle cette formation m'a permis de créer mon propre blog que je saurai personnaliser à mon goût et diffuser des informations en fonction de ma ligne éditoriale. Je vous souhaite une agréable lecture.
                         </p>
                     </div>
                 </div>
@@ -60,7 +66,7 @@
         {# 3 lasts posts #}
         {% if posts|length != 0 %}
         <section id="last-posts" class="my-3 py-3">
-                <h2 data-aos="fade-down" class="text-center my-3 display-5">Mes 3 derniers articles</h2>
+                <h2 data-aos="fade-down" class="text-center my-3 display-5 texte-rose">Mes 3 derniers articles</h2>
 
                 <div class="container mt-5">
                     <div class="card-group">
@@ -69,7 +75,7 @@
                                 <div class="card-body">
                                     <h3 class="card-title">{{post.title}}</h3>
                                     <p class="card-text">{{post.content|striptags|u.truncate(70, '...')|raw}}</p>
-                                    <p><a href="#" class="btn btn-sm btn-primary">Lire cet article</a></p>
+                                    <p><a href="{{path('visitor.blog.post.show', {'id': post.id, 'slug': post.slug})}}" class="btn btn-sm btn-rose">Lire cet article</a></p>
                                     <p class="card-text"><small class="text-body-secondary">Publié {{post.publishedAt|ago}}</small></p>
                                 </div>
                             </div>
@@ -82,10 +88,12 @@
         <section class="my-3 py-5 bg-light text-center">
             <a 
                 href="{{path('visitor.contact.create')}}" 
-                class="btn btn-lg btn-primary"
+                class="btn btn-rose white" 
+
             >
                     Contactez-moi
             </a>
+
         </section>
     </main>
 {% endblock %}

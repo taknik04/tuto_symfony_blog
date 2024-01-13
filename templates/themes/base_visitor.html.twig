@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {# Le titre de la page #}
-        <title>{% block title %}{% endblock %} - Le blog de Jean Dupont</title>
+        <title>{% block title %}{% endblock %} - Le blog de Marie NANA</title>
 
         <meta name="description" content="{% block description %}{% endblock %}">
 
@@ -43,8 +43,8 @@
 </head>
 <body class="body-visitor">
     
-    {# Navbar #}
-    <nav class="navbar navbar-expand-lg">
+   {# Navbar #}
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{path('visitor.welcome.index')}}">JD</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,17 +86,17 @@
                     <ul class="navbar-nav ms-auto">
                         {% if app.user %}
                             {% if is_granted('ROLE_ADMIN') %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{path('admin.home.index')}}">Espace admin</a>
+                                 <li class="nav-item">
+                                    <a class="my-2 mx-sm-2 btn btn-rose shadow" href="{{path('admin.home.index')}}">Espace admin</a>
                                 </li>
                             {% endif %}
                             {% if is_granted('ROLE_USER') %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="">Espace privé</a>
+                                    <a class="my-2 mx-sm-2 btn btn-rose shadow" href="{{path('user.home.index')}}">Espace privé</a>
                                 </li>
                             {% endif %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{path('app.logout')}}">Déconnexion</a>
+                                <a class="my-2 mx-sm-2 btn btn-rose white shadow" href="{{path('app.logout')}}">Déconnexion</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
@@ -119,7 +119,8 @@
     
     {# Footer #}
     <footer class="text-center">
-        <p>DWWM</p>
+
+        <p class="btn-rose white">Japap d'Afrique</p>
     </footer>
 
     {# Bootstrap 5 Javascrip t #}

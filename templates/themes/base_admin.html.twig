@@ -47,8 +47,8 @@
   </head>
   <body>
 
-    <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="{{path('visitor.welcome.index')}}">Japap d'Afrique</a>
+    <header class="navbar sticky-top  flex-md-nowrap p-0 shadow btn-rose" data-bs-theme="dark">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white btn-rose" href="{{path('visitor.welcome.index')}}">Japap d'Afrique</a>
       <ul class="navbar-nav flex-row d-md-none">
         <li class="nav-item text-nowrap">
           <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,52 +61,52 @@
 <div class="container-fluid">
         <div class="row">
 
-            <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+            <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-btn">
               <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
                   <div class="offcanvas-header">
                       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
                   </div>
                   <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-                      <ul class="nav flex-column">
+                      <ul class="nav flex-column btn-rose">
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{path('admin.home.index')}}">
-                                  <i class="fa-solid fa-house"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 active white" aria-current="page" href="{{path('admin.home.index')}}">
+                                  <i class="fa-solid fa-house white"></i>
                                   Tableau de bord
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.category.index')}}">
-                                  <i class="fa-solid fa-folder"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.category.index')}}">
+                                  <i class="fa-solid fa-folder white"></i>
                                   Catégories
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.post.index')}}">
-                                  <i class="fa-solid fa-feather-pointed"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.post.index')}}">
+                                  <i class="fa-solid fa-feather-pointed white"></i>
                                   Articles
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.tag.index')}}">
-                                  <i class="fa-solid fa-hashtag"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.tag.index')}}">
+                                  <i class="fa-solid fa-hashtag white"></i>
                                   Tags
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.contact.index')}}">
-                                  <i class="fa-regular fa-address-book"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.contact.index')}}">
+                                  <i class="fa-regular fa-address-book white"></i>
                                   Contacts
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.user.index')}}">
-                                  <i class="fa-solid fa-users"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.user.index')}}">
+                                  <i class="fa-solid fa-users white"></i>
                                   Utilisateurs
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="">
-                                  <i class="fa-solid fa-comment"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.comment.index')}}">
+                                  <i class="fa-solid fa-comment white"></i>
                                   Commentaires
                               </a>
                           </li>
@@ -114,34 +114,35 @@
 
                       <hr class="my-3">
 
-                      <ul class="nav flex-column mb-auto">
+                      <ul class="nav flex-column mb-auto btn-rose">
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.profile.index')}}">
-                                  <i class="fa-solid fa-user"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.profile.index')}}">
+                                  <i class="fa-solid fa-user white"></i>
                                   Mon profil
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin.setting.index')}}">
-                              <i class="fa-solid fa-gear"></i>                            
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('admin.setting.index')}}">
+                              <i class="fa-solid fa-gear white"></i>                            
                                   Paramètres
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="">
-                                  <i class="fa-solid fa-outdent"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="">
+                                  <i class="fa-solid fa-outdent white"></i>
                                   Espace utilisateur
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('visitor.welcome.index')}}">
-                                  <i class="fa-solid fa-rotate-left"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('visitor.welcome.index')}}">
+                                  <i class="fa-solid fa-rotate-left white"></i>
                                   Retour au site
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link d-flex align-items-center gap-2" href="{{path('app.logout')}}">
-                                  <i class="fa-solid fa-right-from-bracket"></i>
+                              <a class="nav-link d-flex align-items-center gap-2 white" href="{{path('app.logout')}}">
+                                  <i class="fa-solid fa-right-from-bracket white
+                                  "></i>
                                   Déconnexion
                               </a>
                           </li>

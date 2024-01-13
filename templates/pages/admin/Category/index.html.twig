@@ -25,13 +25,13 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Liste des catégories</h1>
+    <h1 class="text-center my-3 display-5 texte-rose">Liste des catégories</h1>
 
       {% include 'components/alert.html.twig' with {'type': 'success'} %}
       {% include 'components/alert.html.twig' with {'type': 'warning'} %}
 
     <div class="d-flex justify-content-end align-items-center my-3">
-        <a href="{{path('admin.category.create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouvelle catégorie</a>
+        <a href="{{path('admin.category.create')}}" class="btn btn-rose"><i class="fa-solid fa-plus"></i> Nouvelle catégorie</a>
     </div>
 
     <div class="table-responsive">
